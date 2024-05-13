@@ -1,5 +1,11 @@
 class Node:
-    pass
+    def __init__(self, key: float | None = None, value: float | None = None) -> None:
+        self.key = key
+        self.value = value
+        self.left: Node = None
+        self.middle: Node = None
+        self.right: Node = None
+        self.count = 0
 
 class MyTree:
     def __init__(self):
