@@ -66,13 +66,26 @@ class MyTree:
         h.color = not h.color
         h.left.color = not h.left.color
         h.right.color = not h.right.color
+        return h
 
     # Verifica se a árvore é 2-3
     def is_balanced(self):
-        return self.__is_balanced(self, self.root, 0)
+        return self.__is_within_difference(self.__is_balanced(self.root.left, 0), self.__is_balanced(self.root.right, 0))
     
-    def __is_balanced(self, node: Node, black_nodes):
-        pass
+    def __is_balanced(self, node: Node, black_nodes: int):
+        if node is None:
+            return 1
+        if not self.is_red(node):
+            black_nodes += 1
+        return self.__biggest(self.__is_balanced(node.left, black_nodes), self.__is_balanced(node.right, black_nodes))
+    
+    def __biggest(self, a: int, b: int) -> int:
+        if a > b:
+            return a
+        return b
+
+    def __is_within_difference(self, a: int, b: int) -> bool:
+        return a - 1 <= b or a + 1 >= b
 
 def main():
     mt = MyTree()
@@ -81,6 +94,6 @@ def main():
         num, txt = input().split(" ")
         mt.put(int(num), txt)
     print(mt.is_balanced())
-
+    
 if __name__ == "__main__":
     main()
