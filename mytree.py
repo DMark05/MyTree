@@ -64,6 +64,7 @@ class MyTree:
         h.color = not h.color
         h.left.color = not h.left.color
         h.right.color = not h.right.color
+        return h
 
     # Verifica se a árvore é 2-3
     def is23(self):
