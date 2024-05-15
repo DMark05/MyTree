@@ -72,9 +72,9 @@ class MyTree:
     def __is23(self, node: Node) -> bool:
         if node is None:
             return True
-        if self.is_red(node.left):
+        if self.is_red(node.right):
             return False
-        if node.left is not None or node.right is not None:
+        if node.right is not None:
             return self.__is23(node.left) or self.__is23(node.right)
         return True
         
